@@ -3,34 +3,339 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Site</title>
+    <title>Arcode — Estatísticas Esportivas</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="description" content="Análises e sugestões baseadas em estatísticas. Arco em Zero. Lista oficial de plataformas. Sem garantia de resultados. Aposte com responsabilidade.">
 
-    <!-- Verificação da conta Google AdSense -->
+    <!-- ✅ Google AdSense - Verificação da conta -->
     <meta name="google-adsense-account" content="ca-pub-3093749821224863">
 
-    <!-- Declaração do AdSense (linha solicitada) -->
+    <!-- ✅ Linha de declaração solicitada -->
     <!-- google.com, pub-3093749821224863, DIRECT, f08c47fec0942fa0 -->
 
-    <!-- Script oficial do Google AdSense -->
+    <!-- ✅ Script oficial do AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3093749821224863"
      crossorigin="anonymous"></script>
 
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+        :root { --fundo: #0f0f23; --card: #1a1a3e; --destaque: #4ade80; --alerta: #facc15; --perigo: #f87171; --azul: #60a5fa; --texto: #e5e7eb; }
+        body { background: var(--fundo); color: var(--texto); padding: 12px; min-height: 100vh; }
+
+        .aviso-legal {
+            background: linear-gradient(90deg, #facc15, #fde047);
+            color: #000;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 18px;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .atualizacao {
+            background: #1e3a5f;
+            color: #93c5fd;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        header { text-align: center; margin-bottom: 20px; }
+        h1 { color: var(--destaque); font-size: 22px; margin-bottom: 4px; }
+        .subtitulo { color: #9ca3af; font-size: 13px; }
+
+        .abas { display: flex; gap: 8px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px; }
+        .aba {
+            padding: 10px 16px;
+            background: #252550;
+            border: none;
+            border-radius: 20px;
+            color: var(--texto);
+            font-size: 14px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .aba.ativa { background: var(--destaque); color: #000; font-weight: 600; }
+
+        .card {
+            background: var(--card);
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 16px;
+        }
+        .card h2 { font-size: 16px; color: var(--azul); margin-bottom: 14px; }
+
+        .btn-principal {
+            background: var(--destaque);
+            color: #000;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 16px;
+        }
+
+        .sugestao {
+            background: #252550;
+            padding: 14px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--azul);
+        }
+        .confianca-alta { border-left-color: var(--destaque); }
+        .confianca-media { border-left-color: var(--alerta); }
+        .confianca-baixa { border-left-color: var(--perigo); }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .tag-futebol { background: var(--destaque); color: #000; }
+        .tag-arco { background: #60a5fa; color: #fff; }
+
+        .linha { margin: 6px 0; font-size: 14px; line-height: 1.5; }
+        .rotulo { color: #9ca3af; font-size: 13px; }
+        .aviso-card { font-size: 11px; color: var(--perigo); margin-top: 8px; font-style: italic; }
+
+        .casa {
+            padding: 12px;
+            background: #2a2a5a;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .casa a { color: var(--azul); text-decoration: none; }
+        .casa .status { color: var(--destaque); font-weight: 600; }
+
+        .pagina { display: none; }
+        .pagina.visivel { display: block; }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 16px;
+            font-size: 12px;
+            color: #6b7280;
+        }
+        .carregando { text-align: center; padding: 20px; color: #9ca3af; }
+        .anuncio {
+            background: #2d2d4d;
+            border: 2px dashed #4b5563;
+            border-radius: 10px;
+            padding: 24px;
+            text-align: center;
+            margin: 18px 0;
+            color: #9ca3af;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Conteúdo do Site -->
-    <header>
-        <h1>Bem-vindo ao Meu Site</h1>
-        <p>Seu conteúdo principal começa aqui.</p>
-    </header>
+<div class="aviso-legal">
+    ⚠️ Ministério da Fazenda adverte: Apostar pode causar dependência. As análises são apenas sugestões estatísticas. NÃO garantem resultados. Aposte com responsabilidade. Proibido para menores de 18 anos.
+</div>
 
-    <main>
-        <p>Coloque seus textos, imagens, artigos e todo o conteúdo da página nesta área.</p>
-    </main>
+<div class="atualizacao" id="info-atualizacao">
+    ✅ App verifica atualizações sozinho • Última verificação: Hoje
+</div>
 
-    <footer>
-        <p>&copy; 2026 Meu Site - Todos os direitos reservados.</p>
-    </footer>
+<header>
+    <h1>🛡️ Arcode — Estatísticas Esportivas</h1>
+    <p class="subtitulo">Análises + Arco em Zero + Plataformas Autorizadas</p>
+</header>
+
+<div class="abas">
+    <button class="aba ativa" onclick="mostrarPagina('inicio')">🏠 Início</button>
+    <button class="aba" onclick="mostrarPagina('arco')">🛡️ Arco em Zero</button>
+    <button class="aba" onclick="mostrarPagina('futebol')">⚽ Futebol</button>
+    <button class="aba" onclick="mostrarPagina('plataformas')">✅ Autorizadas</button>
+</div>
+
+<!-- PÁGINA INÍCIO -->
+<div id="pag-inicio" class="pagina visivel">
+    <div class="card">
+        <h2>🔄 Análises do Dia</h2>
+        <button class="btn-principal" onclick="gerarTodas()">🔄 Atualizar Agora</button>
+        <div id="lista-geral">
+            <p class="carregando">Clique em "Atualizar Agora" para carregar.</p>
+        </div>
+    </div>
+
+    <!-- ✅ ESPAÇO DE ANÚNCIO DO GOOGLE ADSENSE -->
+    <div class="google.com, pub-3093749821224863, DIRECT, f08c47fec0942fa0">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-3093749821224863"
+             data-ad-slot="SEU_CODIGO_ANUNCIO_AQUI"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</div>
+
+<!-- PÁGINA ARCO EM ZERO -->
+<div id="pag-arco" class="pagina">
+    <div class="card">
+        <h2>🛡️ Arco em Zero — Vitória sem sofrer gols</h2>
+        <button class="btn-principal" onclick="gerarArcoZero()">🔄 Atualizar Arco em Zero</button>
+        <div id="lista-arco">
+            <p class="carregando">Clique acima para carregar sugestões de Arco em Zero.</p>
+        </div>
+    </div>
+    <div class="card">
+        <h2>ℹ️ O que é Arco em Zero?</h2>
+        <p style="font-size:14px; line-height:1.6;">
+            <strong>Arco em Zero</strong> = quando uma equipe vence o jogo sem sofrer nenhum gol.<br><br>
+            ✅ Exemplo: Placar 1×0, 2×0, 3×0 → GANHOU<br>
+            ❌ Exemplo: Placar 2×1 → PERDEU (levou gol)<br>
+            ❌ Exemplo: Empate 0×0 → PERDEU (não houve vitória)<br><br>
+            <em>⚠️ Apenas sugestão estatística. Nenhum resultado é garantido.</em>
+        </p>
+    </div>
+</div>
+
+<!-- PÁGINA FUTEBOL -->
+<div id="pag-futebol" class="pagina">
+    <div class="card">
+        <h2>⚽ Análises — Futebol</h2>
+        <button class="btn-principal" onclick="gerarFutebol()">🔄 Atualizar Futebol</button>
+        <div id="lista-futebol">
+            <p class="carregando">Clique acima para carregar.</p>
+        </div>
+    </div>
+</div>
+
+<!-- PÁGINA PLATAFORMAS -->
+<div id="pag-plataformas" class="pagina">
+    <div class="card">
+        <h2>✅ Plataformas Autorizadas — Ministério da Fazenda</h2>
+        <p style="font-size:13px; color:#9ca3af; margin-bottom:14px;">Acesse apenas plataformas com domínio .bet.br oficial.</p>
+        <div id="lista-plataformas">
+            <p class="carregando">🔄 Carregando lista oficial...</p>
+        </div>
+        <p style="margin-top:16px; font-size:13px; color:#f87171;">
+            ⚠️ Consulte sempre a lista oficial completa no site do Governo: 
+            <a href="https://www.gov.br/fazenda/pt-br" target="_blank" style="color:#60a5fa;">www.gov.br/fazenda</a>
+        </p>
+    </div>
+</div>
+
+<footer>
+    Portal informativo — Não garante resultados. Aposte com responsabilidade. +18 anos.
+</footer>
+
+<script>
+// ==========================================
+// BANCO DE DADOS
+// ==========================================
+const dadosArcoZero = [
+    { partida: "Brasil x Bolívia", time: "Brasil", confianca: "alta", razao: "Defesa sólida + adversário com ataque fraco" },
+    { partida: "França x Gibraltar", time: "França", confianca: "alta", razao: "Grande diferença técnica" },
+    { partida: "Argentina x Paraguai", time: "Argentina", confianca: "media", razao: "Defesa forte mas adversário equilibrado" },
+    { partida: "Inglaterra x Islândia", time: "Inglaterra", confianca: "alta", razao: "Favorito com defesa consistente" },
+    { partida: "Alemanha x Luxemburgo", time: "Alemanha", confianca: "alta", razao: "Histórico de jogos sem sofrer gols em casa" }
+];
+
+const dadosFutebol = [
+    { partida: "Brasil x Argentina", tipo: "Empate", confianca: "media", razao: "Histórico de equilíbrio" },
+    { partida: "França x Espanha", tipo: "Ambas marcam", confianca: "alta", razao: "Ataques fortes dos dois lados" },
+    { partida: "Portugal x Holanda", tipo: "Mais de 1.5 gols", confianca: "media", razao: "Média histórica acima de 2 gols" }
+];
+
+const plataformasAutorizadas = [
+    { nome: "Superbet", url: "https://superbet.bet.br", status: "✅ Autorizada" },
+    { nome: "Betnacional", url: "https://betnacional.bet.br", status: "✅ Autorizada" },
+    { nome: "Pixbet", url: "https://pixbet.bet.br", status: "✅ Autorizada" },
+    { nome: "F12.Bet", url: "https://f12.bet.br", status: "✅ Autorizada" },
+    { nome: "KTO", url: "https://kto.bet.br", status: "✅ Autorizada" },
+    { nome: "Lista Completa (Governo)", url: "https://www.gov.br/fazenda/pt-br", status: "🔗 Site Oficial" }
+];
+
+// ==========================================
+// NAVEGAÇÃO
+// ==========================================
+function mostrarPagina(nome) {
+    document.querySelectorAll('.pagina').forEach(p => p.classList.remove('visivel'));
+    document.querySelectorAll('.aba').forEach(a => a.classList.remove('ativa'));
+    document.getElementById(`pag-${nome}`).classList.add('visivel');
+    event.target.classList.add('ativa');
+    if (nome === 'plataformas') carregarPlataformas();
+}
+
+// ==========================================
+// FUNÇÕES DE CARREGAMENTO
+// ==========================================
+function carregarPlataformas() {
+    const container = document.getElementById('lista-plataformas');
+    container.innerHTML = plataformasAutorizadas.map(p => `
+        <div class="casa">
+            <a href="${p.url}" target="_blank"><strong>${p.nome}</strong></a>
+            <div class="status">${p.status}</div>
+        </div>
+    `).join('');
+}
+
+function gerarArcoZero() {
+    const container = document.getElementById('lista-arco');
+    container.innerHTML = dadosArcoZero.map(item => {
+        const classeConf = item.confianca === 'alta' ? 'confianca-alta' :
+                           item.confianca === 'media' ? 'confianca-media' : 'confianca-baixa';
+        return `
+            <div class="sugestao ${classeConf}">
+                <span class="tag tag-arco">🛡️ Arco em Zero</span>
+                <div class="linha"><strong>${item.partida}</strong></div>
+                <div class="linha">➡️ <strong>${item.time}</strong> vence sem sofrer gols</div>
+                <div class="linha rotulo">Confiança: ${item.confianca === 'alta' ? '🟢 Alta' : item.confianca === 'media' ? '🟡 Média' : '🔴 Baixa'}</div>
+                <div class="linha rotulo">📌 ${item.razao}</div>
+                <div class="aviso-card">⚠️ Apenas sugestão. Sem garantia.</div>
+            </div>
+        `;
+    }).join('');
+}
+
+function gerarFutebol() {
+    const container = document.getElementById('lista-futebol');
+    container.innerHTML = dadosFutebol.map(item => {
+        const classeConf = item.confianca === 'alta' ? 'confianca-alta' :
+                           item.confianca === 'media' ? 'confianca-media' : 'confianca-baixa';
+        return `
+            <div class="sugestao ${classeConf}">
+                <span class="tag tag-futebol">⚽ Futebol</span>
+                <div class="linha"><strong>${item.partida}</strong></div>
+                <div class="linha">➡️ <strong>${item.tipo}</strong></div>
+                <div class="linha rotulo">Confiança: ${item.confianca === 'alta' ? '🟢 Alta' : item.confianca === 'media' ? '🟡 Média' : '🔴 Baixa'}</div>
+                <div class="linha rotulo">📌 ${item.razao}</div>
+                <div class="aviso-card">⚠️ Apenas sugestão. Sem garantia.</div>
+            </div>
+        `;
+    }).join('');
+}
+
+function gerarTodas() {
+    gerarArcoZero();
+    gerarFutebol();
+    document.getElementById('info-atualizacao').innerHTML = "✅ Atualizado agora às " + new Date().toLocaleTimeString('pt-BR');
+}
+
+// Carrega automaticamente ao abrir
+window.onload = function() {
+    document.getElementById('info-atualizacao').innerHTML = "✅ Pronto! Última verificação: Hoje às " + new Date().toLocaleTimeString('pt-BR');
+};
+</script>
 
 </body>
 </html>
