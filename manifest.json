@@ -1,0 +1,19 @@
+{
+    "name": "Estatísticas Esportivas — Análises",
+    "short_name": "Estatísticas",
+    "description": "Análises baseadas em estatísticas e lista oficial de plataformas autorizadas pelo Ministério da Fazenda. Sem garantia de resultados. Aposte com responsabilidade.",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#0f0f23",
+    "theme_color": "#1a1a2e",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "https://cdn-icons-png.flaticon.com/512/2659/2659960.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": ["sports", "utilities"]
+}
