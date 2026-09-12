@@ -3,223 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arcode — Bem-vindo</title>
+    <title>Meu Site</title>
 
-    <!-- ✅ Código do AdSense -->
+    <!-- Google AdSense -->
+    <meta name="google-adsense-account" content="pub-3093749821224863">
+    
+    <!-- Linha de declaração AdSense -->
+    <!-- google.com, pub-3093749821224863, DIRECT, f08c47fec0942fa0 -->
+    
+    <!-- Script do AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3093749821224863"
      crossorigin="anonymous"></script>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: #fff;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            margin-bottom: 30px;
-        }
-
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .subtitulo {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 30px;
-        }
-
-        /* ✅ BOTÕES DESTAQUE — Bem visíveis e chamativos */
-        .botoes {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .botao {
-            padding: 15px 30px;
-            background: linear-gradient(90deg, #ffd700, #ffed4e);
-            color: #2c2c2c;
-            font-weight: bold;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            text-decoration: none;
-            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .botao:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
-        }
-
-        .botao-2 {
-            background: linear-gradient(90deg, #11998e, #38ef7d);
-            box-shadow: 0 6px 20px rgba(17, 153, 142, 0.4);
-        }
-
-        .botao-2:hover {
-            box-shadow: 0 10px 30px rgba(17, 153, 142, 0.5);
-        }
-
-        .botao-3 {
-            background: linear-gradient(90deg, #f12711, #f5af19);
-            box-shadow: 0 6px 20px rgba(241, 39, 17, 0.35);
-        }
-
-        .botao-3:hover {
-            box-shadow: 0 10px 30px rgba(241, 39, 17, 0.45);
-        }
-
-        /* ✅ INFORMAÇÕES MENOS VISÍVEIS — Logo abaixo dos botões */
-        .info-discreta {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 35px;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-        }
-
-        .card h2 {
-            color: #ffd700;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        .card p {
-            font-size: 1.05rem;
-            color: #f0f0f0;
-        }
-
-        .destaque {
-            background: linear-gradient(90deg, #ffd700, #ffed4e);
-            color: #333;
-            padding: 15px 25px;
-            border-radius: 12px;
-            font-weight: bold;
-            text-align: center;
-            font-size: 1.1rem;
-            margin: 30px 0;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
-        }
-
-        .anuncio-espaco {
-            background: rgba(255, 255, 255, 0.08);
-            border: 2px dashed rgba(255, 255, 255, 0.3);
-            border-radius: 12px;
-            padding: 20px;
-            margin: 30px 0;
-            text-align: center;
-        }
-
-        footer {
-            text-align: center;
-            padding: 25px;
-            margin-top: 40px;
-            opacity: 0.6;
-            font-size: 0.85rem;
-        }
-
-        @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            .container { padding: 20px 15px; }
-            header { padding: 25px 15px; }
-            .botao { padding: 12px 22px; font-size: 1rem; }
-        }
-    </style>
 </head>
 <body>
 
-    <div class="container">
-
-        <header>
-            <h1>🚀 Arcode</h1>
-            <p class="subtitulo">Bem-vindo! Clique em uma opção abaixo para entrar</p>
-
-            <!-- ✅ BOTÕES DESTAQUE — Bem visíveis no topo -->
-            <div class="botoes">
-                <a href="#" class="botao">🏠 Página Principal</a>
-                <a href="#" class="botao botao-2">📂 Projetos</a>
-                <a href="#" class="botao botao-3">📞 Contato</a>
-            </div>
-
-            <!-- ✅ INFORMAÇÕES MENOS VISÍVEIS — Logo abaixo dos botões -->
-            <div class="info-discreta">
-                Versão 1.0 • Atualizado em 2026 • Feito por Aranawillian • GitHub Pages
-            </div>
-        </header>
-
-        <div class="destaque">
-            🔥 Site em desenvolvimento — Em breve mais novidades!
-        </div>
-
-        <div class="card">
-            <h2>✨ Sobre o Projeto</h2>
-            <p>Este é o meu espaço na web! Aqui você vai encontrar conteúdo interessante, projetos e novidades. Fique à vontade para explorar usando os botões acima!</p>
-        </div>
-
-        <!-- ✅ ESPAÇO PARA ANÚNCIO -->
-        <div class="anuncio-espaco">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-3093749821224863"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-
-        <div class="card">
-            <h2>💡 O que vem por aí</h2>
-            <p>Estou trabalhando em várias funcionalidades para deixar este site ainda melhor. Acompanhe as atualizações e volte sempre!</p>
-        </div>
-
-        <footer>
-            &copy; 2026 Arcode — Todos os direitos reservados.<br>
-            Feito com 💜 e muito café.
-        </footer>
-
-    </div>
+    <!-- Conteúdo da Página -->
+    <h1>Bem-vindo ao meu site!</h1>
+    <p>Conteúdo da página aqui...</p>
 
 </body>
 </html>
